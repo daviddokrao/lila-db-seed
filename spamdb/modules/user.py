@@ -86,9 +86,13 @@ class User:
         marks: list[str] = [],
         roles: list[str] = [],
         with_perfs: bool = True,
+        display_name: str | None = None,
     ):
         self._id = util.normalize_id(name)
-        self.username = name.capitalize()
+        # str.capitalize() hạ chữ thường phần còn lại, nên 'hungkings' ra 'Hungkings'
+        # chứ không phải 'HungKings'. Tên hiển thị lấy từ trường này, không phải từ
+        # hằng số bên lila — muốn giữ chữ hoa giữa từ thì phải truyền display_name.
+        self.username = display_name or name.capitalize()
         self.email = f'{name}@localhost'
         self.bpass = binary.Binary(env.get_password_hash(name))
         self.enabled = True
@@ -302,7 +306,7 @@ def _create_special_users():
     # và hiện ra ở /@/<id>. Phải khớp UserId.lichess trong lila
     # (modules/core/src/main/userId.scala) — lệch một bên là lila trỏ tới một tài
     # khoản không tồn tại mà không báo lỗi gì.
-    users.append(User('hungkings', [], [], False))
+    users.append(User('hungkings', [], [], False, display_name='HungKings'))
     users.append(User('ai', [], [], False))
     if env.args.su is not None:
         users.append(User(env.args.su, [], ['ROLE_SUPER_ADMIN'], False))
