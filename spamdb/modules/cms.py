@@ -1,5 +1,36 @@
+import os
+
 from modules.env import env
 import modules.util as util
+
+# Nội dung thật nằm ở data/cms/<khoá>.<ngôn-ngữ>.md, không nhúng trong Python:
+# đó là văn bản cho người đọc, cần xem diff và sửa như văn bản.
+#
+# Thiếu bản 'vi' thì KHÔNG seed bản rỗng — CmsApi.getBestFor dò theo ngôn ngữ ưa
+# thích rồi lùi về defaultLanguage, nên không có bản Việt là tự hiện bản Anh.
+# Thiếu cả bản 'en' mới quay lại đoạn văn mẫu, để trang trống còn nhìn ra được.
+DEFAULT_LANGUAGE = 'en'  # phải khớp lila.i18n defaultLanguage
+CONTENT_LANGUAGES = [DEFAULT_LANGUAGE, 'vi']
+
+
+def _content_path(key: str, language: str) -> str:
+    return os.path.join(env.data_path, 'cms', f'{key}.{language}.md')
+
+
+def _read_content(key: str, language: str) -> tuple[str, str] | None:
+    """Trả về (tiêu đề, markdown). Tiêu đề là dòng '# ...' đầu tiên và bị cắt khỏi
+    thân bài — lila tự dựng thẻ h1 từ trường title, để lại trong markdown là hiện
+    tiêu đề hai lần."""
+    path = _content_path(key, language)
+    if not os.path.exists(path):
+        return None
+    with open(path, encoding='utf-8') as f:
+        text = f.read()
+    lines = text.splitlines()
+    if lines and lines[0].startswith('# '):
+        return lines[0][2:].strip(), '\n'.join(lines[1:]).strip()
+    return '', text.strip()
+
 
 default_pages = [
     ['About', 'about'],
@@ -13,7 +44,7 @@ default_pages = [
     ['Ads', 'ads'],
     ['Chess Calendar', 'broadcast-calendar', '/broadcast/calendar'],
     ['About broadcasts', 'broadcasts', '/broadcast/help'],
-    ['Lichess Broadcaster App', 'broadcaster-app', '/broadcast/app'],
+    ['Broadcaster App', 'broadcaster-app', '/broadcast/app'],
     ['Puzzle Racer', 'racer'],
     ['Puzzle Storm', 'storm'],
     ['Studies: Staff Picks', 'studies-staff-picks'],
@@ -42,7 +73,15 @@ def update_cms_colls() -> None:
     pages: list[CmsPage] = []
 
     for page in default_pages:
-        pages.append(CmsPage(page))
+        for language in CONTENT_LANGUAGES:
+            content = _read_content(page[1], language)
+            if content is None:
+                # Chỉ bản mặc định mới được phép rơi về văn mẫu; bản dịch thiếu thì bỏ qua.
+                if language == DEFAULT_LANGUAGE:
+                    pages.append(CmsPage(page, language=language))
+                continue
+            title, body = content
+            pages.append(CmsPage(page, language=language, title=title or None, body=body))
 
     pages.append(CmsPage(['Mobile', 'mobile'], empty=True))
     pages.append(CmsPage(['Test Users', 'test-users'], body=_seeded_users_body()))
@@ -116,7 +155,14 @@ def _seeded_users_body() -> str:
 
 
 class CmsPage:
-    def __init__(self, page: list, empty=False, body: str | None = None):
+    def __init__(
+        self,
+        page: list,
+        empty=False,
+        body: str | None = None,
+        language: str = DEFAULT_LANGUAGE,
+        title: str | None = None,
+    ):
         if body is not None:
             content = body
         elif empty:
@@ -136,9 +182,9 @@ class CmsPage:
 
         self._id = env.next_id(CmsPage)
         self.key = page[1]
-        self.title = page[0]
+        self.title = title or page[0]
         self.markdown = body
-        self.language = 'en'
+        self.language = language
         self.live = True
         self.by = 'admin'
         self.at = util.time_since_days_ago(30)
