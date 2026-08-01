@@ -141,7 +141,7 @@ class Env:
             [self.args.su]
             if self.args.su
             else [
-                'lichess',
+                'hungkings',
                 'superadmin',
                 'admin',
                 'shusher',

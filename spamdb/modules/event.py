@@ -56,12 +56,12 @@ class HomepageEvent:
         self.startsAt = datetime.now() + timedelta(days=offset_days, hours=random.uniform(-6, 6))
         self.finishesAt = self.startsAt + timedelta(hours=random.uniform(1, 6))
 
-        self.createdBy = 'lichess'
+        self.createdBy = 'hungkings'
         self.createdAt = self.startsAt - timedelta(days=random.uniform(1, 10))
-        self.updatedBy = 'lichess'
+        self.updatedBy = 'hungkings'
         self.updatedAt = util.time_since(self.createdAt)
 
-        hostedBy = random.choice(['lichess', None])
+        hostedBy = random.choice(['hungkings', None])
         if hostedBy is not None:
             self.hostedBy = hostedBy
 

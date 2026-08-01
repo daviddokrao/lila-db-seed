@@ -63,9 +63,10 @@ def update_blog_colls() -> None:
     carousel_target = min(9, len(live_posts))
     now = datetime.now()
     for i, up in enumerate(random.sample(live_posts, carousel_target)):
-        # Random author, lightly skewed toward the lichess system account,
-        # since any community blog can be elevated to the carousel.
-        by = 'lichess' if random.random() < 0.25 else env.random_uid()
+        # Random author, lightly skewed toward the system account, since any
+        # community blog can be elevated to the carousel. Must match the id created
+        # in user.py and UserId.lichess in lila.
+        by = 'hungkings' if random.random() < 0.25 else env.random_uid()
         if i < carousel_target // 2:
             # pinned: currently featured, stays up for a while
             up.featured = {'by': by, 'at': now, 'until': now + timedelta(days=util.rrange(7, 30))}
@@ -135,6 +136,6 @@ _blog_topics: list[str] = [
     'Tournament',
     'Chess variant',
     'Software Development',
-    'Lichess',
+    'HungKings',
     'Off topic',
 ]

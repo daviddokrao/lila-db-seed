@@ -3,7 +3,6 @@ _united-nations
 _russia-wbw
 _rainbow
 _pirate
-_lichess
 _east-turkestan
 _belarus-wrw
 _adygea

@@ -56,7 +56,7 @@ def update_team_colls() -> list:
                     [u.user for u in team_members],
                 )
             categs[-1].add_topic(t)
-    teams.append(Team('Lichess Swiss'))
+    teams.append(Team('HungKings Swiss'))
     teams[-1].leaders = ['superadmin']
     teams[-1].nbMembers = len(env.uids)
     teams[-1].open = True

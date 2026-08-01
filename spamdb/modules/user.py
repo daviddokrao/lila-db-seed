@@ -197,9 +197,12 @@ class Streamer:
         self.picture = 'streamer.png'
         self.headline = random.choice(env.msgs)
         self.description = random.choice(env.paragraphs)
+        # Kênh Twitch của MỌI streamer mẫu. Upstream để 'lichessdotorg', tức trang
+        # /streamer hiện "twitch.tv/lichessdotorg" dưới thương hiệu mình — kênh có
+        # thật, của tổ chức khác. Đây là dữ liệu mẫu nên tên chỉ cần vô hại.
         self.twitch = {
-            'id': 'lichessdotorg',
-            'login': 'lichessdotorg',
+            'id': 'hungkingschess',
+            'login': 'hungkingschess',
         }
 
 
@@ -295,7 +298,11 @@ class Playban:
 
 def _create_special_users():
     users: list[User] = []
-    users.append(User('lichess', [], [], False))
+    # Tài khoản CHÍNH THỨC của site: đứng tên blog chính thức, tin nhắn hệ thống,
+    # và hiện ra ở /@/<id>. Phải khớp UserId.lichess trong lila
+    # (modules/core/src/main/userId.scala) — lệch một bên là lila trỏ tới một tài
+    # khoản không tồn tại mà không báo lỗi gì.
+    users.append(User('hungkings', [], [], False))
     users.append(User('ai', [], [], False))
     if env.args.su is not None:
         users.append(User(env.args.su, [], ['ROLE_SUPER_ADMIN'], False))
