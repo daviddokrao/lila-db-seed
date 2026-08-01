@@ -60,6 +60,24 @@ default_pages = [
     ['Your account has been closed by your teacher', 'account-closed-by-teacher'],
     ['Account deletion is pending', 'delete-done', '/account/delete/done'],
     ['Team Etiquette', 'team-etiquette'],
+    # Nhóm dưới đây upstream KHÔNG seed, nhưng mã nguồn lila có trỏ tới — thiếu là
+    # người dùng bấm vào ra trang 404. Xem `grep -rhoE 'cmsPageUrl\("[^"]+"\)'` để
+    # kiểm lại danh sách sau mỗi lần merge upstream.
+    ['Fair Play', 'fair-play'],
+    ['Communication Guidelines', 'communication-guidelines'],
+    ['Forum Etiquette', 'forum-etiquette'],
+    ['Blog Etiquette', 'blog-etiquette'],
+    ['Blog Tips', 'blog-tips'],
+    ['Reporting a Player', 'report-faq'],
+    ['Appealing a Decision', 'appeal'],
+    ['Rating Systems', 'rating-systems'],
+    ['Team Battles', 'team-battle-faq'],
+    ['Leagues and Team Battles', 'leagues-and-battles'],
+    ['Running a Good Event', 'event-tips'],
+    ['Tournament Prizes', 'prizes'],
+    ['Getting Your Streamer Page Live', 'streamer-page-activation'],
+    ['Fair Play While Streaming', 'streaming-fairplay-faq'],
+    ['Accessibility and Blind Mode', 'blind-mode-tutorial'],
 ]
 
 
