@@ -1,6 +1,6 @@
 # Tài khoản của bạn đã bị đóng
 
-Tài khoản của bạn bị đóng vì vi phạm [Điều khoản dịch vụ](/tos). Phần lớn trường
+Tài khoản của bạn bị đóng vì vi phạm [Điều khoản dịch vụ](/terms-of-service). Phần lớn trường
 hợp là do dùng máy tính cờ trợ giúp trong lúc chơi, nhưng cũng có thể do lạm
 dụng nhiều lần, né tránh một hạn chế trước đó, hoặc dùng nhiều tài khoản.
 

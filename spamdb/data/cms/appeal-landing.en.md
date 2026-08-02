@@ -1,7 +1,7 @@
 # Your account has been closed
 
 Your account was closed because of a breach of the
-[Terms of Service](/tos). In most cases that means engine assistance during
+[Terms of Service](/terms-of-service). In most cases that means engine assistance during
 games, but it can also follow repeated abuse, evading a previous restriction, or
 running multiple accounts.
 

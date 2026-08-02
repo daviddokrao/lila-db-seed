@@ -25,7 +25,7 @@ Hãy ghi giải thưởng thật rõ trong phần mô tả: số tiền, thứ h
 thời hạn. Công bố người thắng công khai và trả đúng như đã nói.
 
 Đừng treo giải thưởng mà bạn không chắc mình trả được. Không trả được bị xem là
-vi phạm [Điều khoản dịch vụ](/tos) và sẽ mất tài khoản, bất kể vì lý do gì.
+vi phạm [Điều khoản dịch vụ](/terms-of-service) và sẽ mất tài khoản, bất kể vì lý do gì.
 
 ## Nếu bạn không được trả
 

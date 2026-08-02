@@ -38,4 +38,4 @@ Khiếu nại do người xử lý chứ không phải máy, nên cần thời g
 câu trả lời. Nếu nó không có lợi cho bạn, gửi lại cũng không đổi được.
 
 Xem thêm [Chơi trung thực](/page/fair-play) và
-[Điều khoản dịch vụ](/tos).
+[Điều khoản dịch vụ](/terms-of-service).

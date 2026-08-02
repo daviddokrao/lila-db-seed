@@ -32,6 +32,6 @@ roster does not appear is a loss for everyone who did.
 
 ## Rules that are not optional
 
-Everything in the [Terms of Service](/tos) applies inside teams too. A private
+Everything in the [Terms of Service](/terms-of-service) applies inside teams too. A private
 team forum is not a place where harassment or hate speech becomes acceptable.
 Team leaders are responsible for what stays up in their own forum.

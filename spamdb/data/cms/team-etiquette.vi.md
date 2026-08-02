@@ -31,7 +31,7 @@ không xuất hiện là thất bại cho tất cả những người đã đế
 
 ## Những luật không phải tuỳ chọn
 
-Mọi điều trong [Điều khoản dịch vụ](/tos) cũng áp dụng bên trong đội. Một diễn
+Mọi điều trong [Điều khoản dịch vụ](/terms-of-service) cũng áp dụng bên trong đội. Một diễn
 đàn đội riêng tư không phải là nơi mà quấy rối hay ngôn từ thù ghét trở nên chấp
 nhận được. Đội trưởng chịu trách nhiệm về những gì được để lại trên diễn đàn của
 đội mình.

@@ -3,7 +3,7 @@
 ## Khi nào nên báo cáo
 
 Hãy báo cáo khi ai đó gian lận, lăng mạ người chơi khác, hoặc cư xử theo cách mà
-[Điều khoản dịch vụ](/tos) cấm. Dùng [biểu mẫu báo cáo](/report), hoặc nút báo
+[Điều khoản dịch vụ](/terms-of-service) cấm. Dùng [biểu mẫu báo cáo](/report), hoặc nút báo
 cáo trên trang hồ sơ của họ.
 
 ## Điều gì làm một báo cáo có ích

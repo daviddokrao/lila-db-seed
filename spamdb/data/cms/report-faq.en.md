@@ -3,7 +3,7 @@
 ## When to report
 
 Report someone when they cheated, abused another player, or behaved in a way the
-[Terms of Service](/tos) forbid. Use the [report form](/report), or the report
+[Terms of Service](/terms-of-service) forbid. Use the [report form](/report), or the report
 button on their profile page.
 
 ## What makes a report useful

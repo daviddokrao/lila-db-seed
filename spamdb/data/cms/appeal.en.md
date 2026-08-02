@@ -39,4 +39,4 @@ Appeals are handled by people, not scripts, so they take time. You get one
 answer. If it goes against you, sending it again will not change it.
 
 See also [Fair Play](/page/fair-play) and the
-[Terms of Service](/tos).
+[Terms of Service](/terms-of-service).

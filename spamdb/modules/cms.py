@@ -78,6 +78,10 @@ default_pages = [
     ['Getting Your Streamer Page Live', 'streamer-page-activation'],
     ['Fair Play While Streaming', 'streaming-fairplay-faq'],
     ['Accessibility and Blind Mode', 'blind-mode-tutorial'],
+    # Khoá này KHÔNG lọt lưới grep cmsPageUrl/CmsPageKey: layout.scala nhúng nó dưới
+    # dạng chuỗi HTML thô (`<a href="/page/network-administrators">`). Khi rà lại
+    # danh sách, nhớ grep cả `/page/` trong chuỗi thô chứ đừng chỉ grep lời gọi hàm.
+    ['Network Administrators', 'network-administrators'],
 ]
 
 

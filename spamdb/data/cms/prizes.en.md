@@ -28,7 +28,7 @@ of payment, and timescale. Announce the winners publicly and pay when you said
 you would.
 
 Do not advertise a prize you are not certain you can pay. Failing to deliver one
-is treated as a breach of the [Terms of Service](/tos) and costs the account,
+is treated as a breach of the [Terms of Service](/terms-of-service) and costs the account,
 regardless of the reason.
 
 ## If you were not paid
