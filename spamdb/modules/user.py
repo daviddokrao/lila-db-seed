@@ -38,7 +38,7 @@ def update_user_colls() -> None:
     follow_factor = args.follow
 
     for uid in env.uids:
-        users.append(User(uid))
+        users.append(User(uid, display_name=env.display_names.get(uid)))
         perfs, stats = users[-1].detach_perfs()
         userperfs.append(perf.UserPerfs(uid, perfs))
         history.append(History(userperfs[-1], users[-1].createdAt))
@@ -114,12 +114,16 @@ class User:
         if rating > 2100:
             self.title = random.choice(_titles)
 
+        # Hồ sơ mẫu theo bản sắc HungKings. Bản gốc ghép máy móc từ username
+        # ("Angel City", họ "Angelbertson") — nhìn là biết dữ liệu giả.
         self.profile = {
             'country': env.random_country(),
-            'location': self.username + ' City',
+            'location': random.choice(_cities),
             'bio': env.random_paragraph()[:350],
-            'firstName': self.username,
-            'lastName': self.username + 'bertson',
+            # ĐẢO CÓ CHỦ Ý: lila ghép "firstName lastName". Tên người Việt là họ đứng
+            # trước, nên nhét họ vào firstName mới ra "Lý Thanh Tùng" thay vì "Thanh Tùng Lý".
+            'firstName': random.choice(_family_names),
+            'lastName': random.choice(_given_names),
             'fideRating': max(1400, rating),
             'uscfRating': util.rrange(rating - 200, rating + 200),
             'ecfRating': util.rrange(rating - 200, rating + 200),
@@ -362,6 +366,65 @@ def _create_special_users():
 
     return users
 
+
+# Dùng cho hồ sơ mẫu. Chỉ là dữ liệu demo — không nhắm tới người thật nào.
+_cities: list[str] = [
+    'Hà Nội',
+    'TP. Hồ Chí Minh',
+    'Đà Nẵng',
+    'Hải Phòng',
+    'Cần Thơ',
+    'Huế',
+    'Nha Trang',
+    'Vinh',
+    'Quy Nhơn',
+    'Buôn Ma Thuột',
+    'Thái Nguyên',
+    'Nam Định',
+    'Vũng Tàu',
+    'Đà Lạt',
+    'Rạch Giá',
+]
+
+_family_names: list[str] = [
+    'Nguyễn',
+    'Trần',
+    'Lê',
+    'Phạm',
+    'Hoàng',
+    'Phan',
+    'Vũ',
+    'Đặng',
+    'Bùi',
+    'Đỗ',
+    'Hồ',
+    'Ngô',
+    'Dương',
+    'Lý',
+]
+
+_given_names: list[str] = [
+    'Minh Khôi',
+    'Tuấn Kiệt',
+    'Quang Anh',
+    'Hoàng Nam',
+    'Đức Anh',
+    'Gia Bảo',
+    'Khánh Duy',
+    'Thanh Tùng',
+    'Bảo Châu',
+    'Phương Vy',
+    'Ngọc Ánh',
+    'Thùy Linh',
+    'Mai Anh',
+    'Kim Ngân',
+    'Hồng Nhung',
+    'Việt Anh',
+    'Trung Kiên',
+    'Xuân Mai',
+    'Lan Anh',
+    'Hải Yến',
+]
 
 _titles: list[str] = [
     'GM',

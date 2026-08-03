@@ -21,6 +21,7 @@ class Env:
         parent_path = os.path.dirname(os.path.dirname(__file__))
         self.data_path: str = os.path.join(parent_path, 'data')
         self.uids: list[str] = []
+        self.display_names: dict[str, str] = {}
         self.custom_passwords: dict[str, str] = {}
         self._read_users()
         self.countries: list[str] = self._read_strings('countries.txt')
@@ -126,7 +127,10 @@ class Env:
         return new_list[0:n]
 
     def _read_strings(self, name: str) -> list[str]:
-        with open(os.path.join(self.data_path, name), 'r') as f:
+        # encoding CỐ ĐỊNH utf-8: dữ liệu mẫu nay là tiếng Việt có dấu, mà open() không
+        # khai báo thì Python lấy encoding theo locale — container chạy locale C sẽ nổ
+        # UnicodeDecodeError. cms.py đã phải làm đúng thế này từ trước.
+        with open(os.path.join(self.data_path, name), 'r', encoding='utf-8') as f:
             return [s.strip() for s in f.read().splitlines() if s and not s.lstrip().startswith('#')]
 
     def _http_get_list(self, url: str) -> list[str]:
@@ -151,15 +155,25 @@ class Env:
         )
 
     def _read_users(self) -> None:
-        with open(os.path.join(self.data_path, 'uids.txt'), 'r') as f:
+        with open(os.path.join(self.data_path, 'uids.txt'), 'r', encoding='utf-8') as f:
             for line in f.read().splitlines():
                 entry = line.strip()
                 if not entry or entry.startswith('#'):
                     continue
                 fields = entry.split('/', 1)
-                uid = fields[0].lower().rstrip()
+                # Cú pháp `uid|TênHiểnThị[/mật-khẩu]`. lila bắt tên hiển thị phải trùng
+                # uid khi bỏ hoa/thường, nên chỉ đổi được KIỂU CHỮ ("minhkhoi|MinhKhoi"),
+                # không thêm được dấu hay khoảng trắng. Không có `|` thì vẫn như cũ:
+                # str.capitalize() → "Minhkhoi".
+                name_field = fields[0].rstrip()
+                display = None
+                if '|' in name_field:
+                    name_field, display = (part.strip() for part in name_field.split('|', 1))
+                uid = name_field.lower()
                 if uid not in self._get_special_users():
                     self.uids.append(uid)
+                    if display:
+                        self.display_names[uid] = display
                 if len(fields) > 1:
                     self.custom_passwords[uid] = fields[1].lstrip()
 

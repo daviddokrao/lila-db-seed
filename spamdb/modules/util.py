@@ -4,6 +4,7 @@ import os
 import random
 import json
 import bson
+import unicodedata
 from datetime import timedelta, datetime
 from modules.env import env
 from typing import Any, Mapping
@@ -77,7 +78,16 @@ def rrange(lower: int, upper: int) -> int:
 
 
 def normalize_id(name: str) -> str:
-    return '-'.join(re.sub(r'[^\w\s]', '', name.lower()).split())
+    # Bỏ dấu tiếng Việt TRƯỚC khi tạo id/slug. `\w` của Python là Unicode-aware, nên
+    # "CLB Cờ Vua Hà Nội" sẽ giữ nguyên dấu và sinh ra id đội / slug chủ đề diễn đàn
+    # non-ASCII — lila định tuyến theo chính id đó, dấu trong URL là kiểu hỏng thầm.
+    # Tên HIỂN THỊ vẫn giữ dấu đầy đủ; chỉ id là ASCII.
+    ascii_name = ''.join(
+        c for c in unicodedata.normalize('NFD', name) if not unicodedata.combining(c)
+    )
+    # đ/Đ không tách được thành dấu tổ hợp nên NFD không đụng tới, phải thay tay
+    ascii_name = ascii_name.replace('đ', 'd').replace('Đ', 'D')
+    return '-'.join(re.sub(r'[^\w\s]', '', ascii_name.lower()).split())
 
 
 def chance(probability: float) -> bool:
