@@ -33,7 +33,10 @@ class Env:
         self.social_media_links: list[str] = self._read_strings('social_media_links.txt')
         self.bg_image_links: list[str] = self._read_strings('bg_image_links.txt')
         self.flairs: list[str] = self._http_get_list(
-            'https://raw.githubusercontent.com/lichess-org/lila/master/public/flair/list.txt'
+            # Fork CHỨ KHÔNG phải lichess-org: 23 flair thương hiệu Lichess đã gỡ khỏi
+            # public/flair/list.txt ngày 02/08. Trỏ về upstream thì mỗi lần seed lại là
+            # kéo nguyên chúng về — hỏng im lặng, vì seed vẫn chạy xong bình thường.
+            'https://raw.githubusercontent.com/daviddokrao/lila/master/public/flair/list.txt'
         )
         self.games: list[dict] = self._read_bson('game5.bson')
         self.puzzles: list[dict] = self._read_bson('puzzle2_puzzle.bson')
