@@ -28,7 +28,7 @@ What changed, newest first. Dates are when the change reached the live site.
 ## 31 July 2026
 
 - **Game explanation bot.** Paste a game ID at
-  `hungkings-coach.vssa.com/<game-id>` for a move-by-move commentary in
+  `hungkings.com/hlv/<game-id>` for a move-by-move commentary in
   Vietnamese.
 
 ## 30 July 2026

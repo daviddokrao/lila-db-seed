@@ -31,7 +31,7 @@ chạy thật.
 ## 31 tháng 7, 2026
 
 - **Bot giải thích ván cờ.** Dán mã ván vào
-  `hungkings-coach.vssa.com/<mã-ván>` để đọc bình luận từng nước bằng tiếng
+  `hungkings.com/hlv/<mã-ván>` để đọc bình luận từng nước bằng tiếng
   Việt.
 
 ## 30 tháng 7, 2026
